@@ -1,0 +1,11 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: order-history
+spec:
+  host: "*"
+  trafficPolicy:
+    outlierDetection:
+      consecutive5xxErrors: 8
+      interval: 1m
+      baseEjectionTime: 1m

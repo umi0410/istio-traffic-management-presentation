@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rollouts-demo-stable
+  labels:
+    app: rollouts-demo
+    version: stable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rollouts-demo
+      version: stable
+  template:
+    metadata:
+      labels:
+        app: rollouts-demo
+        version: stable
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: argoproj/rollouts-demo:blue
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 100Mi
+          limits:
+            memory: 100Mi

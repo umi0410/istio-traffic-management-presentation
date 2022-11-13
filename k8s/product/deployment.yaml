@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-a
+  labels:
+    app: product
+    topology.gke.io/zone: asia-northeast3-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+      topology.gke.io/zone: asia-northeast3-a
+  template:
+    metadata:
+      labels:
+        app: product
+        topology.gke.io/zone: asia-northeast3-a
+    spec:
+      containers:
+      - name: product
+        image: umi0410/istio-demo-ausg:v1
+        command: ["./main", "product"]
+        env:
+        - name: "VERSION"
+          value: "v1"
+        - name: "PORT"
+          value: "9090"
+        - name: "ORDER_HISTORY_URL"
+          value: "http://order-history"
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        imagePullPolicy: Always
+      nodeSelector:
+        topology.gke.io/zone: asia-northeast3-a
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-b
+  labels:
+    app: product
+    topology.gke.io/zone: asia-northeast3-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+      topology.gke.io/zone: asia-northeast3-b
+  template:
+    metadata:
+      labels:
+        app: product
+        topology.gke.io/zone: asia-northeast3-b
+    spec:
+      containers:
+      - name: product
+        image: umi0410/istio-demo-ausg:v1
+        command: ["./main", "product"]
+        env:
+        - name: "VERSION"
+          value: "v1"
+        - name: "PORT"
+          value: "9090"
+        - name: "ORDER_HISTORY_URL"
+          value: "http://order-history"
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        imagePullPolicy: Always
+      nodeSelector:
+        topology.gke.io/zone: asia-northeast3-b
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-c
+  labels:
+    app: product
+    topology.gke.io/zone: asia-northeast3-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+      topology.gke.io/zone: asia-northeast3-c
+  template:
+    metadata:
+      labels:
+        app: product
+        topology.gke.io/zone: asia-northeast3-c
+    spec:
+      containers:
+      - name: product
+        image: umi0410/istio-demo-ausg:v1
+        command: ["./main", "product"]
+        env:
+        - name: "VERSION"
+          value: "v1"
+        - name: "PORT"
+          value: "9090"
+        - name: "ORDER_HISTORY_URL"
+          value: "http://order-history"
+        ports:
+        - containerPort: 9090
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        imagePullPolicy: Always
+      nodeSelector:
+        topology.gke.io/zone: asia-northeast3-c

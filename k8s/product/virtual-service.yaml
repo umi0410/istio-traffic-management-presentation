@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: product
+spec:
+  hosts:
+  - "ausg.jinsu.me"
+  gateways:
+  - istio-system/jinsu-me
+  http:
+  - match:
+    - uri:
+        prefix: /products
+    route:
+    - destination:
+        host: product
+        port:
+          number: 80

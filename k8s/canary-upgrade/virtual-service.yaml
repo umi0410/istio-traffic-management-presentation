@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: canary
+spec:
+  hosts:
+  - "canary.jinsu.me"
+  gateways:
+  - istio-system/jinsu-me
+  http:
+  - route:
+    - destination:
+        host: rollouts-demo
+        subset: stable
+        port:
+          number: 80
+      weight: 100
+    - destination:
+        host: rollouts-demo
+        subset: canary
+        port:
+          number: 80
+      weight: 0

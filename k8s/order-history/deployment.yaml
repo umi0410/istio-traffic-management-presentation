@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-history-a
+  labels:
+    app: order-history
+    topology.gke.io/zone: asia-northeast3-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-history
+      topology.gke.io/zone: asia-northeast3-a
+  template:
+    metadata:
+      labels:
+        app: order-history
+        topology.gke.io/zone: asia-northeast3-a
+    spec:
+      containers:
+      - name: order-history
+        image: umi0410/istio-demo-ausg:v1
+        command: ["./main", "order-history"]
+        env:
+        - name: "PORT"
+          value: "8080"
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        imagePullPolicy: Always
+      nodeSelector:
+        topology.gke.io/zone: asia-northeast3-a
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-history-b
+  labels:
+    app: order-history
+    topology.gke.io/zone: asia-northeast3-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-history
+      topology.gke.io/zone: asia-northeast3-b
+  template:
+    metadata:
+      labels:
+        app: order-history
+        topology.gke.io/zone: asia-northeast3-b
+    spec:
+      containers:
+      - name: order-history
+        image: umi0410/istio-demo-ausg:v1
+        command: ["./main", "order-history"]
+        env:
+        - name: "PORT"
+          value: "8080"
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        imagePullPolicy: Always
+      nodeSelector:
+        topology.gke.io/zone: asia-northeast3-b
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-history-c
+  labels:
+    app: order-history
+    topology.gke.io/zone: asia-northeast3-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-history
+      topology.gke.io/zone: asia-northeast3-c
+  template:
+    metadata:
+      labels:
+        app: order-history
+        topology.gke.io/zone: asia-northeast3-c
+    spec:
+      containers:
+      - name: order-history
+        image: umi0410/istio-demo-ausg:v1
+        command: ["./main", "order-history"]
+        env:
+        - name: "PORT"
+          value: "8080"
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 200Mi
+          limits:
+            memory: 200Mi
+        imagePullPolicy: Always
+      nodeSelector:
+        topology.gke.io/zone: asia-northeast3-c
