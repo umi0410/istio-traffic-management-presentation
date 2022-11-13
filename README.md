@@ -56,6 +56,12 @@ kubectl apply -n ausg -f k8s/namespace.yaml -f k8s/product/ -f k8s/order-history
 * VirtualService를 통해 canary subset의 weight를 늘렸다 줄였다 가능
 * 이미지는 canary 배포를 통한 트래픽 비율을 한눈에 확인할 수 있는 [ArgoRollout의 demo 이미지](https://hub.docker.com/r/argoproj/rollouts-demo/tags)를 이용함 
 
+## Demo #2) How to deploy
+
+```console
+kubectl apply -n ausg -f k8s/namespace.yaml -f k8s/canary-deployment
+```
+
 ## 참고한 자료
 
 * 각종 Istio의 공식 문서들
