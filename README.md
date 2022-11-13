@@ -5,7 +5,7 @@
 * 목표: **"대학생 동아리임을 감안하여 깊은 내용보단 서비스 메쉬와 Istio에 대해 간단히 설명하고, Istio에 대한 흥미를 유발하며 새로운 자극이 될 수 있도록 하기"**
 * Demo는 single region, multi az의 개인 클러스터에서 진행
   * Kubernetes: 1.24
-  * Istio 1.15
+  * Istio: 1.15
 
 ## PDF 빌드 방법
 
